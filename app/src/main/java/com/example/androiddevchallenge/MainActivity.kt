@@ -31,10 +31,12 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MyTheme {
                 TimerScreen(
-                    selectedTime = timerViewModel.selected,
-                    timerCount = timerViewModel.currentTime,
-                    onStartTimer = timerViewModel::startTimer,
-                    onTimeSelected = timerViewModel::onSelectTime
+                    selectedTime = timerViewModel.selectedTimeSetting,
+                    timerCount = timerViewModel.currentTimeMillis,
+                    timerCountSeconds = timerViewModel.currentTimeSeconds,
+                    onStartTimer = timerViewModel::toggleTimer,
+                    onTimeSelected = timerViewModel::onSelectTime,
+                    isStared = timerViewModel.isStarted
                 )
             }
         }
@@ -46,9 +48,13 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun LightPreview() {
     MyTheme {
-        TimerScreen(selectedTime = TimeSetting.TIME_30,
-            timerCount = 10,
+        TimerScreen(
+            selectedTime = TimeSetting.TIME_30,
+            timerCount = 1000,
+            timerCountSeconds = 1,
             onStartTimer = {},
-            onTimeSelected = {})
+            onTimeSelected = {},
+            isStared = false
+        )
     }
 }

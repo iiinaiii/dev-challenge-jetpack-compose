@@ -21,3 +21,10 @@ val purple200 = Color(0xFFBB86FC)
 val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val teal200 = Color(0xFF03DAC5)
+
+val colorTimerNumber = Color(0xFF201911)
+val colorTimerBackground = Color(0xAA745A41)
+val colorTimerBackgroundOverlay = Color(0x6FCEBCAA)
+val colorTimerBackgroundCircle = Color(0xAA423425)
+val colorTimerBackgroundLine = Color(0xAA796B54)
+
