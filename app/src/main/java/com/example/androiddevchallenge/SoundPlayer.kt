@@ -20,22 +20,17 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 
 class SoundPlayer(context: Context) {
-    private lateinit var soundPool: SoundPool
-    private var buzzerSoundId: Int? = null
+    private val soundPool: SoundPool
+    private val buzzerSoundId: Int
 
     init {
         val audioAttributes = AudioAttributes.Builder()
-            // USAGE_MEDIA
-            // USAGE_GAME
             .setUsage(AudioAttributes.USAGE_GAME)
-            // CONTENT_TYPE_MUSIC
-            // CONTENT_TYPE_SPEECH, etc.
             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
             .build()
 
         soundPool = SoundPool.Builder()
             .setAudioAttributes(audioAttributes)
-            // ストリーム数に応じて
             .setMaxStreams(2)
             .build()
 
@@ -43,7 +38,7 @@ class SoundPlayer(context: Context) {
     }
 
     fun playBuzzer() {
-        buzzerSoundId?.let {
+        buzzerSoundId.let {
             soundPool.play(it, 1.0f, 1.0f, 0, 0, 1.0f)
         }
     }
