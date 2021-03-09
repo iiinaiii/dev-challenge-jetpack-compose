@@ -27,4 +27,3 @@ val colorTimerBackground = Color(0xAA745A41)
 val colorTimerBackgroundOverlay = Color(0x6FCEBCAA)
 val colorTimerBackgroundCircle = Color(0xAA423425)
 val colorTimerBackgroundLine = Color(0xAA796B54)
-

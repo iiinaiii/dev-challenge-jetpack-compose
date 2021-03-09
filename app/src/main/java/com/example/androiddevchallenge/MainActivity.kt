@@ -19,8 +19,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -28,33 +29,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        timerViewModel.prepare(this)
         setContent {
             MyTheme {
-                TimerScreen(
-                    selectedTime = timerViewModel.selectedTimeSetting,
-                    timerCount = timerViewModel.currentTimeMillis,
-                    timerCountSeconds = timerViewModel.currentTimeSeconds,
-                    onStartTimer = timerViewModel::toggleTimer,
-                    onTimeSelected = timerViewModel::onSelectTime,
-                    isStared = timerViewModel.isStarted
-                )
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Text(text = "Theater Countdown")
+                            }
+                        )
+                    }
+                ) {
+                    TimerScreen(
+                        selectedTime = timerViewModel.selectedTimeSetting,
+                        timerCount = timerViewModel.currentTimeMillis,
+                        timerCountSeconds = timerViewModel.currentTimeSeconds,
+                        onStartTimer = timerViewModel::toggleTimer,
+                        onTimeSelected = timerViewModel::onSelectTime,
+                        isStared = timerViewModel.isStarted
+                    )
+                }
             }
         }
-    }
-}
-
-
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        TimerScreen(
-            selectedTime = TimeSetting.TIME_30,
-            timerCount = 1000,
-            timerCountSeconds = 1,
-            onStartTimer = {},
-            onTimeSelected = {},
-            isStared = false
-        )
     }
 }
