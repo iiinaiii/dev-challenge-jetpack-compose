@@ -15,11 +15,9 @@
  */
 package com.example.androiddevchallenge
 
-import java.time.Duration
-
-enum class TimeSetting(val time: Duration) {
-    TIME_60(Duration.ofSeconds(60)),
-    TIME_30(Duration.ofSeconds(30)),
-    TIME_10(Duration.ofSeconds(10)),
-    TIME_5(Duration.ofSeconds(5))
+enum class TimeSetting(val timeMillis: Long) {
+    TIME_60(60000),
+    TIME_30(30000),
+    TIME_10(10000),
+    TIME_5(5000)
 }

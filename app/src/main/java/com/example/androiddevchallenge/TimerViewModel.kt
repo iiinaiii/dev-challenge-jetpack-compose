@@ -34,7 +34,7 @@ class TimerViewModel : ViewModel() {
     var currentState by mutableStateOf(State.BEFORE_START)
     val isStarted: Boolean
         get() = currentState == State.STARTED
-    var currentTimeMillis: Long by mutableStateOf(TimeSetting.TIME_10.time.toMillis())
+    var currentTimeMillis: Long by mutableStateOf(TimeSetting.TIME_10.timeMillis)
     val currentTimeSeconds: Int
         get() = ceil(currentTimeMillis / 1000f).toInt()
     var selectedTimeSetting by mutableStateOf(TimeSetting.TIME_10)
@@ -57,7 +57,7 @@ class TimerViewModel : ViewModel() {
 
     private fun startTimer(setting: TimeSetting) {
         val startTime = when (currentState) {
-            State.BEFORE_START -> setting.time.toMillis()
+            State.BEFORE_START -> setting.timeMillis
             State.PAUSE, State.STARTED -> currentTimeMillis
         }
 
@@ -83,6 +83,6 @@ class TimerViewModel : ViewModel() {
 
     fun onSelectTime(timeSetting: TimeSetting) {
         selectedTimeSetting = timeSetting
-        currentTimeMillis = timeSetting.time.toMillis()
+        currentTimeMillis = timeSetting.timeMillis
     }
 }
